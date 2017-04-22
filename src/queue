@@ -1,0 +1,95 @@
+/**
+* @file queue.c
+* @brief queue
+*
+* @author Eli Schneider
+*
+* @version 0.0.1
+* @date 15.02.2010
+*/
+#include <stddef.h>
+#include "queue.h"
+
+// Functions that will be run from RAM need to be assigned to 
+// a different section.  This section will then be mapped to a load and 
+// run address using the linker cmd file.
+
+#pragma CODE_SECTION(queueOut, "ramfuncs");
+#pragma CODE_SECTION(queueIn, "ramfuncs");
+
+/**
+* @fn void queueInit(QUEUE *q)
+*
+* @brief This function initializes a queue pointed by argument q.
+* 
+* @param q - pointer to a queue. A NULL pointer means no queue is accessed.
+*
+* @author Eli Schneider
+*
+* @date 15.02.2010
+*/
+void queueInit(QUEUE *q)
+{
+	#ifdef PARAM_CHECK
+	if (q==NULL) 
+		return;
+	#endif
+	q->head=q->tail=NULL;
+}
+
+/**
+* @fn struct sQHeader *QueueOut(QUEUE * q)
+*
+* @brief This function retrieves an element from a queue.
+* 
+* @param q - pointer to a queue. A NULL pointer means no queue is accessed.
+*
+* @return Pointer to the retrieved element. NULL = no element retrieved.
+*
+* @author Eli Schneider
+*
+* @date 15.02.2010
+*/
+struct sQHeader *queueOut(QUEUE * q)
+{
+	struct sQHeader *p;
+
+	p=q->head;
+	if (p)
+	{
+		q->head=p->next;
+		p->next=NULL;
+		if (q->head==NULL)
+			q->tail=NULL;
+	}
+	return p;
+}
+
+/**
+* @fn void queueIn(QUEUE *q, struct sQHeader *p)
+*
+* @brief This function appends an element to a queue.
+* 
+* @param q - pointer to a queue. A NULL pointer means no queue is accessed.
+* @param p - pointer to an element. A NULL pointer means no element is appended.
+*
+*
+* @author Eli Schneider
+*
+* @date 15.02.2010
+*/
+void queueIn(QUEUE *q, struct sQHeader *p)
+{
+	#ifdef PARAM_CHECK
+	if (q==NULL)
+		return;
+	#endif
+	if (p==NULL)
+		return;
+	if (q->tail)
+		q->tail->next=p;
+	else
+		q->head=p;
+	q->tail=p;
+}
+
