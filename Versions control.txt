@@ -48,6 +48,5 @@
 
 131204_src_Nisko_water_meter2_test- test sw version
 
-131205_src_Nisko_water_meter2 -initial config bug fixed (changeModemConfig()). version-22500.
 
 
