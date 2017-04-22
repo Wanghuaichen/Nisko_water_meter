@@ -40,7 +40,6 @@
 131015_src_Repeater	-version 12. 6 hours mode,repeater set and get func. Not compiled- flash problem.
 131015_inc_Repeater
 
-131105_src_Nisko_water_meter2- Logger Debug version. Find in modem.c sendLogger() function for debug history.
 
 
 
