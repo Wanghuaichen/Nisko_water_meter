@@ -50,6 +50,4 @@
 
 131205_src_Nisko_water_meter2 -initial config bug fixed (changeModemConfig()). version-22500.
 
-140122_inc_Repeater	-version 15. 6 hours mode,learning mode, get function
-140122_src_Repeater
 
