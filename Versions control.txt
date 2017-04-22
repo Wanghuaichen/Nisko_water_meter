@@ -42,6 +42,5 @@
 
 131105_src_Nisko_water_meter2- Logger Debug version. Find in modem.c sendLogger() function for debug history.
 
-131126_src_Nisko_water_meter2- Logger Debug. version-1257.
 
 
